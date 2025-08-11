@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
+@mixin caprasimo{
+  font-family: "Caprasimo", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Nata+Sans:wght@100&display=swap');
+@mixin nata-sans($weight: 100) {
+  font-family: "Nata Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: $weight;
+  font-style: normal;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@mixin raleway($weight: 100) {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: $weight;
+  font-style: normal;
+}

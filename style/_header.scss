@@ -1,0 +1,56 @@
+@use "./font" as *;
+header {
+	height: 80vh; // Even smaller height
+	position: relative;
+	img {
+		width: 100%;
+		height: 80vh; // Match the header height
+		object-fit: cover;
+	}
+	.head-content {
+		width: 85%;
+		position: absolute;
+		top: 40%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		text-align: left;
+		color: #fff;
+		h1 {
+			@include raleway(700);
+			font-size: 6rem;
+			// text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+			opacity: 0;
+			animation: fadeUp 1s ease-out forwards;
+			animation-delay: 0.2s;
+			span {
+				font-size: inherit;
+				color: inherit;
+			}
+		}
+		p {
+			text-align: center;
+			font-size: 1.5rem;
+			margin-top: 1rem;
+			// text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+			opacity: 0;
+			animation: fadeUp 1s ease-out forwards;
+			animation-delay: 0.5s;
+		}
+		// Fade up animation
+	}
+	@keyframes fadeUp {
+		0% {
+			opacity: 0;
+			transform: translateY(40px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+}
+
+.text-style {
+	margin-left: 20%;
+	@include raleway(100);
+}

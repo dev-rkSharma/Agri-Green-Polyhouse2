@@ -1,0 +1,23 @@
+@use "./card" as *;
+@use "./color" as *;
+ .why-us {
+  background-color: #92e6a7;
+  padding: 5em 2rem 2rem 2rem;
+  text-align: center;
+
+  h2 {
+    font-size: 2.5rem;
+    color: $theme;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 2rem;
+  }
+
+  .card-flex {
+    @extend .card-flex; // Reusing card-flex styles
+  }
+}

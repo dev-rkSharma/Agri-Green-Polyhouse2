@@ -1,0 +1,31 @@
+@use "./nav" as *;
+@use "./header" as *;
+@use "./color" as *;
+@use "./whyus" as *;
+@use "./types" as *;
+@use "./section3" as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  // border: 1px solid black;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background: #f4f9f6;
+  color: #333;
+  line-height: 1.7;
+//   padding-top: 15vh;
+}
+
+section {
+  padding: 2rem;
+  margin: auto;
+}
