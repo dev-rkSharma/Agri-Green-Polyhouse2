@@ -320,14 +320,12 @@ section.grow div.grow-container div.grow-content span h1 {
 }
 section.grow div.grow-container div.grow-content span p {
   font-size: 1.2rem;
-  color: black;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border: 1px solid black;
 }
 
 html {

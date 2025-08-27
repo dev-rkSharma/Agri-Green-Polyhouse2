@@ -1,194 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Agri Green Polyhouse</title>
+		<link
+			rel="icon"
+			href="./asset/images/logo_favicon.jpg"
+			type="image/x-icon"
+		/>
+		<link rel="stylesheet" href="./style/style.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+			crossorigin="anonymous"
+		/>
+		<link
+			href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+			rel="stylesheet"
+		/>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agri Green Polyhouse</title>
-  <link rel="icon" href="./asset/images/logo_favicon.jpg" type="image/x-icon" />
-  <link rel="stylesheet" href="./style/style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+		<style>
+			.overlay-text {
+				position: absolute;
+				top: 30%; /* distance from the top */
+				left: 50%;
+				transform: translateX(-50%);
+				color: white;
+				text-align: center;
+			}
+		</style>
+	</head>
 
-  <style>
-    .overlay-text {
-    position: absolute;
-    top: 30%; /* distance from the top */
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    text-align: center;
-  }
-  </style>
-</head>
+	<body>
+		<nav class="navbar">
+			<div
+				class="logo"
+				style="
+					display: flex;
+					align-items: center;
+					gap: 10px;
+					padding-left: 20px;
+				"
+			>
+				<img
+					src="asset/images/logo_favicon.jpg"
+					alt="Logo"
+					style="
+						width: 60px;
+						height: 60px;
+						border-radius: 50%;
+						object-fit: cover;
+						border: 2px solid #4caf50;
+						cursor: pointer;
+					"
+				/>
+				<span
+					style="
+						font-family: 'Poppins', sans-serif;
+						font-size: 20px;
+						font-weight: 600;
+						color: #277a2b;
+						letter-spacing: 1px;
+						cursor: pointer;
+					"
+				>
+					Agri Green Polyhouse
+				</span>
+			</div>
+			<!-- Hamburger Menu -->
+			<div class="menu-toggle" id="menu-toggle">
+				<i class="bi bi-list"></i>
+			</div>
 
-<body>
-  <nav class="navbar">
-            <div class="logo" style="display: flex; align-items: center; gap: 10px; padding-left: 20px;">
-                <img src="asset/images/logo_favicon.jpg" alt="Logo"
-                    style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid #4CAF50; cursor: pointer;">
-                <span
-                    style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 600; color: #277a2b; letter-spacing: 1px; cursor: pointer;">
-                    Agri Green Polyhouse
-                </span>
-            </div>
-            <!-- Hamburger Menu -->
-            <div class="menu-toggle" id="menu-toggle">
-                <i class="bi bi-list"></i>
-            </div>
+			<ul class="nav-links" id="nav-links" style="padding-right: 20px">
+				<li><a href="./index.html">Home</a></li>
+				<li><a href="./projects.html">Projects</a></li>
+				<li><a href="./about.html">About</a></li>
 
-            <ul class="nav-links" id="nav-links" style="padding-right: 20px;">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="#">Why Us</a></li>
-                <li><a href="#">Types</a></li>
-                <li><a href="#">Financial</a></li>
-                <li><a href="#">Investment</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
+				<li><a href="./contact.html">Contact</a></li>
+			</ul>
+		</nav>
 
-  <!-- header section -->
-    <div class="container-fluid px-0" style="position: relative;text-align: center; font-size: xx-large;">
-        <figure>
-            <img src="./asset/images/ground2.jpg" alt="gallery" class="img-fluid" style="width: 100%; height: 500px;">
-            <div class="overlay-text">
-                <h1>Contact Us</h1>
-                <p class="lead text-white">
-                Every great journey begins with a conversation.  
-                Let’s work together to turn your ideas into reality —  
-                reach out today and take the first step toward success!
-            </p>
-            </div>
-    </figure>
-    </div>
+		<!-- header section -->
+		<div
+			class="container-fluid px-0"
+			style="position: relative; text-align: center; font-size: xx-large"
+		>
+			<figure>
+				<img
+					src="./asset/images/ground2.jpg"
+					alt="gallery"
+					class="img-fluid"
+					style="width: 100%; height: 500px"
+				/>
+				<div class="overlay-text">
+					<h1>Contact Us</h1>
+					<p class="lead text-white">
+						Every great journey begins with a conversation. Let’s
+						work together to turn your ideas into reality — reach
+						out today and take the first step toward success!
+					</p>
+				</div>
+			</figure>
+		</div>
 
-  <!-- section types -->
-  <section class="types " id="types">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2554.106444964951!2d73.03723201478425!3d26.281125952670845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39418da424bfef73%3A0x745b338121665868!2sVij%20Law%20Office!5e0!3m2!1sen!2sin!4v1755161970990!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-  </section>
+		<!-- section types -->
+		<section class="types" id="types">
+			<iframe
+				src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2554.106444964951!2d73.03723201478425!3d26.281125952670845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39418da424bfef73%3A0x745b338121665868!2sVij%20Law%20Office!5e0!3m2!1sen!2sin!4v1755161970990!5m2!1sen!2sin"
+				width="100%"
+				height="450"
+				style="border: 0"
+				allowfullscreen=""
+				loading="lazy"
+				referrerpolicy="no-referrer-when-downgrade"
+			></iframe>
+		</section>
 
-  <section style="background-color: #f8f8f8;">
-    <div class="container-fluid">
-    <div class="row mt-5">
-      <div class="col-xxl-4 col-12 col-md-4 mx-auto">
-        <img src="./asset/images/contact.jpg" alt="image" class="img-fluid"/>
-      </div>
+		<section style="background-color: #f8f8f8">
+			<div class="container-fluid">
+				<div class="row mt-5">
+					<div class="col-xxl-4 col-12 col-md-4 mx-auto">
+						<img
+							src="./asset/images/contact.jpg"
+							alt="image"
+							class="img-fluid"
+						/>
+					</div>
 
-      <div class="col-xxl-6 col-10 col-md-6 mx-auto">
-        <div class="text-center mt-5">
-          <h1 class="display-5 text-capitalize text-success">Contact <i>details</i></h1>
-          <hr class="w-15 mx-auto text-success"/>
-        </div>
-        <form method="post" action="/contact">
-          <div class="mb-3">
-            <label for="name" class="form-label text-success">Name</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
-          </div>
-          <div class="mb-3">
-            <label for="email" class="form-label text-success">Email</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email">
-          </div>
-          <div class="mb-3">
-            <label for="phone" class="form-label text-success">Phone</label>
-            <input type="phone" class="form-control" id="phone" name="phone" placeholder="Enter your phone number">
-          </div>
-          <div class="mb-3">
-            <label for="desc" class="form-label text-success">Your Message</label>
-            <textarea class="form-control" id="desc" name="desc" rows="3"></textarea>
-          </div>
-          <div class="d-grid gap-2 col-md-6 mx-auto mb-3">
-            <button type="submit" class="btn btn-success">SEND</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  </section>
+					<div class="col-xxl-6 col-10 col-md-6 mx-auto">
+						<div class="text-center mt-5">
+							<h1 class="display-5 text-capitalize text-success">
+								Contact <i>details</i>
+							</h1>
+							<hr class="w-15 mx-auto text-success" />
+						</div>
+						<form method="post" action="/contact">
+							<div class="mb-3">
+								<label
+									for="name"
+									class="form-label text-success"
+									>Name</label
+								>
+								<input
+									type="text"
+									class="form-control"
+									id="name"
+									name="name"
+									placeholder="Enter your name"
+								/>
+							</div>
+							<div class="mb-3">
+								<label
+									for="email"
+									class="form-label text-success"
+									>Email</label
+								>
+								<input
+									type="email"
+									class="form-control"
+									id="email"
+									name="email"
+									placeholder="Enter your email"
+								/>
+							</div>
+							<div class="mb-3">
+								<label
+									for="phone"
+									class="form-label text-success"
+									>Phone</label
+								>
+								<input
+									type="phone"
+									class="form-control"
+									id="phone"
+									name="phone"
+									placeholder="Enter your phone number"
+								/>
+							</div>
+							<div class="mb-3">
+								<label
+									for="desc"
+									class="form-label text-success"
+									>Your Message</label
+								>
+								<textarea
+									class="form-control"
+									id="desc"
+									name="desc"
+									rows="3"
+								></textarea>
+							</div>
+							<div class="d-grid gap-2 col-md-6 mx-auto mb-3">
+								<button type="submit" class="btn btn-success">
+									SEND
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
 
-<footer>
-  <div class="footer-container">
-    <div class="footer-logo">
-      <img src="./asset/images/logo_favicon.jpg" alt="Keisha Greens Logo">
-      <div class="footer-address">
-        <strong>Head Office Address:</strong>
-        815, Swati Clover, Sardar Patel Ring Road, Near Shilaj Circle, Thaltej, Ahmedabad, Gujarat 380059
-      </div>
-      <div class="footer-address">
-        <strong>Factory Address:</strong>
-        Plot-11, Yashraj Industrial Plotting, Opposite Mayur Woven Gate, Khatrej Kalol Road, Moti bhoyan, Gandhinagar, Gujarat - 382721
-      </div>
-      <div class="footer-address">
-        <strong>Contact:</strong>
-        +91 98984 01004 <br>
-        +91 84908 01004 <br>
-        info@keishagreens.in
-      </div>
-      <div class="footer-social">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-linkedin"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
-      </div>
-    </div>
+		<footer>
+			<div class="footer-container">
+				<div class="footer-logo">
+					<img
+						src="./asset/images/logo_favicon.jpg"
+						alt="Keisha Greens Logo"
+					/>
+					<div class="footer-address">
+						<strong>Head Office Address:</strong>
+						815, Swati Clover, Sardar Patel Ring Road, Near Shilaj
+						Circle, Thaltej, Ahmedabad, Gujarat 380059
+					</div>
+					<div class="footer-address">
+						<strong>Factory Address:</strong>
+						Plot-11, Yashraj Industrial Plotting, Opposite Mayur
+						Woven Gate, Khatrej Kalol Road, Moti bhoyan,
+						Gandhinagar, Gujarat - 382721
+					</div>
+					<div class="footer-address">
+						<strong>Contact:</strong>
+						+91 98984 01004 <br />
+						+91 84908 01004 <br />
+						info@keishagreens.in
+					</div>
+					<div class="footer-social">
+						<a href="#"><i class="fab fa-facebook"></i></a>
+						<a href="#"><i class="fab fa-instagram"></i></a>
+						<a href="#"><i class="fab fa-linkedin"></i></a>
+						<a href="#"><i class="fab fa-youtube"></i></a>
+					</div>
+				</div>
 
-    <div class="footer-links">
-      <h4>Sitemap</h4>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Product & Systems</a></li>
-        <li><a href="#">Greenhouse Structures</a></li>
-        <li><a href="#">Soilless & Cocopeat Solutions</a></li>
-        <li><a href="#">Hydroponic Solutions</a></li>
-        <li><a href="#">IoT Solution & Automation</a></li>
-      </ul>
-    </div>
+				<div class="footer-links">
+					<h4>Sitemap</h4>
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="#">Product & Systems</a></li>
+						<li><a href="#">Greenhouse Structures</a></li>
+						<li><a href="#">Soilless & Cocopeat Solutions</a></li>
+						<li><a href="#">Hydroponic Solutions</a></li>
+						<li><a href="#">IoT Solution & Automation</a></li>
+					</ul>
+				</div>
 
-    <div class="footer-links">
-      <h4>Links</h4>
-      <ul>
-        <li><a href="#">By Projects</a></li>
-        <li><a href="#">By Services</a></li>
-        <li><a href="#">By Crops</a></li>
-        <li><a href="#">Downloads</a></li>
-        <li><a href="#">Blogs</a></li>
-        <li><a href="#">FAQ's</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </div>
-  </div>
+				<div class="footer-links">
+					<h4>Links</h4>
+					<ul>
+						<li><a href="#">By Projects</a></li>
+						<li><a href="#">By Services</a></li>
+						<li><a href="#">By Crops</a></li>
+						<li><a href="#">Downloads</a></li>
+						<li><a href="#">Blogs</a></li>
+						<li><a href="#">FAQ's</a></li>
+						<li><a href="#">Contact</a></li>
+					</ul>
+				</div>
+			</div>
 
-  <div class="footer-bottom">
-    © 2025 Keisha Greens. All rights reserved. Designed & Developed by
-    <a href="#">Kraftier Studio</a> |
-    <a href="#">Privacy Policy</a> |
-    <a href="#">Terms of Service</a> |
-    <a href="#">Cookies Settings</a>
-  </div>
-</footer>
+			<div class="footer-bottom">
+				© 2025 Keisha Greens. All rights reserved. Designed & Developed
+				by
+				<a href="#">Kraftier Studio</a> |
+				<a href="#">Privacy Policy</a> |
+				<a href="#">Terms of Service</a> |
+				<a href="#">Cookies Settings</a>
+			</div>
+		</footer>
 
+		<!-- Add your main content sections here -->
 
-  <!-- Add your main content sections here -->
+		<!-- Scripts -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+			crossorigin="anonymous"
+		></script>
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  
-  <script>
-    AOS.init({
-      duration: 800,
-      easing: "ease-in-out",
-      once: true,
-      offset: 100,
-      delay: 0,
-    });
-  </script>
+		<script>
+			AOS.init({
+				duration: 800,
+				easing: "ease-in-out",
+				once: true,
+				offset: 100,
+				delay: 0,
+			});
+		</script>
 
-  <script src="./script.js"></script>
-</body>
-
+		<script src="./script.js"></script>
+	</body>
 </html>

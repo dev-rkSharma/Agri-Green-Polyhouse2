@@ -1,1015 +1,1443 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agri Green Polyhouse</title>
-    <link rel="icon" href="./asset/images/logo_favicon.jpg" type="image/x-icon" />
-    <link rel="stylesheet" href="./style/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-
-    <style>
-        .overlay-text {
-            position: absolute;
-            top: 30%;
-            /* distance from the top */
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            text-align: center;
-        }
-
-        body {
-            background: #f8f9fa;
-        }
-
-        /* Initial state */
-        .project-card {
-            will-change: opacity, transform;
-            opacity: 0.3651;
-            transform: translate3d(0px, 0px, 0px) scale3d(0.93651, 0.93651, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-            transform-style: preserve-3d;
-
-            transition: transform .9s cubic-bezier(.2, .7, .2, 1),
-                opacity .9s ease;
-        }
-
-        /* Active state (when in view) */
-        .project-card.in-view {
-            opacity: 1;
-            transform: translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .project-card {
-                transition: none;
-            }
-        }
-
-        /* ===== Numbers section styling ===== */
-        #numbers {
-            background: #0d4f2f;
-            /* deep green like your screenshot */
-            border-radius: 0;
-            /* make it edge-to-edge if your layout allows */
-        }
-
-        /* spacing helpers */
-        .py-6 {
-            padding-top: 4rem;
-            padding-bottom: 4rem;
-        }
-
-        .py-md-7 {
-            padding-top: 6rem;
-            padding-bottom: 6rem;
-        }
-
-        #numbers .stat {
-            position: relative;
-        }
-
-
-
-        /* button look */
-        .btn-soft-light {
-            background: rgba(255, 255, 255, .12);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, .2);
-            backdrop-filter: blur(2px);
-            box-shadow: 0 8px 18px rgba(0, 0, 0, .25);
-        }
-
-        .btn-soft-light:hover {
-            background: rgba(255, 255, 255, .2);
-            color: #fff;
-            border-color: rgba(255, 255, 255, .35);
-        }
-
-        /* optional: reveal-on-scroll + count-up animation */
-        .reveal {
-            will-change: opacity, transform;
-            opacity: .001;
-            transform: translate3d(0, 16px, 0) scale3d(.985, .985, 1);
-            transform-style: preserve-3d;
-            transition: transform .7s cubic-bezier(.2, .7, .2, 1), opacity .7s ease;
-        }
-
-        .reveal.in-view {
-            opacity: 1;
-            transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
-        }
-
-        .counter1 {
-            font-size: 3.5rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 8px;
-            transition: color 0.3s;
-        }
-
-        /* Tabs */
-        .tabs {
-            text-align: center;
-            margin: 40px 0;
-        }
-
-        .tab-btn {
-            background: none;
-            border: none;
-            font-size: 2rem;
-            padding: .25rem 1rem;
-            cursor: pointer;
-            color: #111;
-            font-weight: 600;
-            position: relative;
-            outline: none;
-            transition: color 0.3s ease;
-        }
-
-        .tab-btn:hover {
-            color: #0a5c36;
-        }
-
-        .tab-btn.active {
-            color: #0a5c36;
-        }
-
-        .tab-btn.active::after {
-            content: "";
-            position: absolute;
-            left: 6%;
-            right: 6%;
-            bottom: -8px;
-            height: 3px;
-            background: #0a5c36;
-            border-radius: 2px;
-        }
-
-        /* Content container */
-        .tab-content {
-            display: none;
-            opacity: 0;
-            transform: translateY(18px);
-            transition: opacity .45s ease, transform .45s cubic-bezier(.2, .7, .2, 1);
-            gap: 40px;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .tab-content img {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .tab-content.active {
-            display: flex;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Text section inside content */
-        .tab-content div {
-            max-width: 600px;
-        }
-
-        .tab-content h5 {
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: #111;
-        }
-
-        .tab-content p {
-            margin-bottom: 20px;
-            line-height: 1.6;
-            color: #444;
-        }
-    </style>
-</head>
-
-<body>
-    <nav class="navbar">
-        <div class="logo" style="display: flex; align-items: center; gap: 10px; padding-left: 20px;">
-            <img src="asset/images/logo_favicon.jpg" alt="Logo"
-                style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid #4CAF50; cursor: pointer;">
-            <span
-                style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 600; color: #277a2b; letter-spacing: 1px; cursor: pointer;">
-                Agri Green Polyhouse
-            </span>
-        </div>
-        <!-- Hamburger Menu -->
-        <div class="menu-toggle" id="menu-toggle">
-            <i class="bi bi-list"></i>
-        </div>
-
-        <ul class="nav-links" id="nav-links" style="padding-right: 20px;">
-            <li><a href="home.html">Home</a></li>
-            <li><a href="#">Why Us</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="#">Financial</a></li>
-            <li><a href="#">Investment</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- header section -->
-    <div class="container-fluid px-0" style="position: relative;text-align: center; font-size: xx-large;">
-        <figure>
-            <img src="./asset/images/ground2.jpg" alt="gallery" class="img-fluid" style="width: 100%; height: 500px;">
-            <div class="overlay-text">
-                <h1>Projects</h1>
-                <p class="lead text-white">
-                    Every seed we plant is a step toward a greener tomorrow.
-                    Our greenhouse projects are designed to nurture sustainability,
-                    harness innovation, and grow a healthier planet for future generations.
-                </p>
-            </div>
-        </figure>
-    </div>
-
-    <!-- section types -->
-    <section class="types " id="types">
-        <div class="container">
-            <div class="row">
-                <div class="card mb-5 bg-light shadow project-card" style="border-radius: 30px;">
-                    <div class="row g-5 p-4">
-                        <div class="col-md-4">
-                            <img src="./asset/images/Panipat.png" class="img-fluid rounded-start" alt="Panipat"
-                                style="height: 100% !important;">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h1 class="card-title">Project in Panipat</h1>
-                                <div class="row mt-5">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Location :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Panipat, Haryana</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Structure :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Fan & Pad Polyhouse</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Growing Medium :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Soilless Hydroponic + Coco peat NFT</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Crops :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Cucumber, Capsicum, Cherry Tomato, Gherkins</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Area :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">21000 Sq. M. Fan & Pad Polyhouse 20000 Sq. M. Naturally
-                                            Ventilated Polyhouse</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Automation :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Fully automated and climate controlled</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Subsidy :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">80% Bank Loan Availed</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card my-5 bg-light shadow project-card" style="border-radius: 30px;">
-                    <div class="row g-5 p-4">
-                        <div class="col-md-4">
-                            <img src="./asset/images/Panipat.png" class="img-fluid rounded-start" alt="Panipat"
-                                style="height: 100% !important;">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h1 class="card-title">Project in Bhilwara</h1>
-                                <div class="row mt-5">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Location :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Bhilwara, Rajasthan</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Structure :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Polyhouse + Net House</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Growing Medium :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Soil & Soilless</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Crops :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Capsicum & Cucumber</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Area :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">20,000 Sq. M.</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Automation :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">NA</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Subsidy :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">NA</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card my-5 bg-light shadow project-card" style="border-radius: 30px;">
-                    <div class="row g-5 p-4">
-                        <div class="col-md-4">
-                            <img src="./asset/images/Panipat.png" class="img-fluid rounded-start" alt="Panipat"
-                                style="height: 100% !important;">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h1 class="card-title">Project in Kadi</h1>
-                                <div class="row mt-5">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Location :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Kadi, Gujarat</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Structure :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Polyhouse</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Growing Medium :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Soil</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Crops :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Cucumbers</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Area :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">96,000 Sq. M.</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Automation :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Fully managed environment with precision irrigation and
-                                            climate care️</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Subsidy :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">50% subsidy from NHB</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card my-5 bg-light shadow project-card" style="border-radius: 30px;">
-                    <div class="row g-5 p-4">
-                        <div class="col-md-4">
-                            <img src="./asset/images/Panipat.png" class="img-fluid rounded-start" alt="Panipat"
-                                style="height: 100% !important;">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h1 class="card-title">Project in Jaipur</h1>
-                                <div class="row mt-5">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Location :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Jaipur, Rajasthan</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Structure :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Naturally Ventilated Polyhouse</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Growing Medium :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Soil</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Crops :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Cucumber</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Area :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">4000 Sq. M</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Automation :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">NA</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Subsidy :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">50% Subsidy under NHB</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card my-5 bg-light shadow project-card" style="border-radius: 30px;">
-                    <div class="row g-5 p-4">
-                        <div class="col-md-4">
-                            <img src="./asset/images/Panipat.png" class="img-fluid rounded-start" alt="Panipat"
-                                style="height: 100% !important;">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h1 class="card-title">Project in Kutch</h1>
-                                <div class="row mt-5">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Location :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Kutch, Gujarat</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Structure :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Fan & Pad + Net house</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Growing Medium :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Hydroponics – DWC (Deep Water Culture) + Grow Slabs</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Crops :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Exotic Vegetables like - Cucumbers, Bell Peppers, Cherry
-                                            Tomatoes & Leafy Greens</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Area :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">21000 Sq. M.</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Automation :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">NA</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Subsidy :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">NA</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card my-5 bg-light shadow project-card" style="border-radius: 30px;">
-                    <div class="row g-5 p-4">
-                        <div class="col-md-4">
-                            <img src="./asset/images/Panipat.png" class="img-fluid rounded-start" alt="Panipat"
-                                style="height: 100% !important;">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h1 class="card-title">Project in Abu Road</h1>
-                                <div class="row mt-5">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Location :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Maval, Abu Road</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Structure :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Polyhouse</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Growing Medium :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Soil</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Crops :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Cucumber</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Area :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">24,000 Sq. M.</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Automation :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">NA</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                                <div class="row p-0">
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">Subsidy :</h6>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h6 class="card-title">50% subsidy from NHB</h6>
-                                    </div>
-                                </div>
-                                <hr class="border border-dark" style="opacity: .85;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===================== Numbers / Stats Section ===================== -->
-    <section id="numbers" class="py-6 py-md-7">
-        <div class="container">
-            <!-- Heading -->
-            <div class="row mb-5">
-                <div class="col-lg-9">
-                    <p class="fw-semibold mb-2 text-white-50">About Company</p>
-                    <h1 class="display-4 fw-semibold text-white mb-3">Agri Green Polyhouse</h1>
-                    <p class="lead text-white-50 mb-0">
-                        Explore advanced technologies in greenhouse farming and hydroponics.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Stats -->
-            <div class="row g-0 align-items-stretch">
-                <!-- 1 -->
-                <div class="col-12 col-md-6 col-xl-3">
-                    <div class="stat px-4 px-lg-5 py-5 reveal">
-                        <div class="display-1 fw-bold lh-1 text-white mb-2"><span class="counter1"
-                                data-target="700">700</span>+</div>
-                        <div class="h5 text-white-50 mb-0">Successful Projects</div>
-                    </div>
-                </div>
-
-                <!-- 2 -->
-                <div class="col-12 col-md-6 col-xl-3">
-                    <div class="stat px-4 px-lg-5 py-5 reveal">
-                        <div class="display-1 fw-bold lh-1 text-white mb-2"><span class="counter1"
-                                data-target="15">15</span>+</div>
-                        <div class="h5 text-white-50 mb-0">Indian States Served</div>
-                    </div>
-                </div>
-
-                <!-- 3 -->
-                <div class="col-12 col-md-6 col-xl-3">
-                    <div class="stat px-4 px-lg-5 py-5 reveal">
-                        <div class="display-1 fw-bold lh-1 text-white mb-2"><span class="counter1"
-                                data-target="7">7</span>+</div>
-                        <div class="h5 text-white-50 mb-0">Countries Served</div>
-                    </div>
-                </div>
-
-                <!-- 4 -->
-                <div class="col-12 col-md-6 col-xl-3">
-                    <div class="stat px-4 px-lg-5 py-5 reveal">
-                        <div class="display-1 fw-bold lh-1 text-white mb-2"><span class="counter1"
-                                data-target="45">45</span>+</div>
-                        <div class="h5 text-white-50 mb-0">Expert Agronomists</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CTA -->
-            <div class="row mt-4">
-                <div class="col-auto">
-                    <a href="about.html" class="btn btn-soft-light btn-lg px-4">About us</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ================================================================== -->
-    <section class="types " id="types">
-        <div class="container my-5">
-
-            <h5 class="text-center fw-bold">Value Proposition</h5>
-            <h1 class="text-center">Why Trust Agri Green Polyhouse</h1>
-            <p class="text-center">Explore advanced technologies in greenhouse farming and hydroponics.</p>
-
-            <!-- Tabs -->
-            <div class="tabs">
-                <button class="tab-btn active" data-tab="farmers">Farmers</button>
-                <button class="tab-btn" data-tab="corporates">Corporates</button>
-            </div>
-
-            <!-- Farmers Content -->
-            <div id="farmers" class="tab-content active">
-                <img src="asset/images/farmers.jfif" alt="Farmers">
-                <div>
-                    <h5>— Affordable Greenhouse Solutions</h5>
-                    <p>We design cost-effective greenhouse solutions tailored to small and medium farmers.</p>
-                    <h5>— Training & Support</h5>
-                    <p>Hands-on training programs to empower farmers with modern farming techniques.</p>
-                    <h5>— Increased Yield</h5>
-                    <p>Boost productivity and profits with controlled environment farming.</p>
-                </div>
-            </div>
-
-            <!-- Corporates Content -->
-            <div id="corporates" class="tab-content">
-                <img src="asset/images/corporate.jfif" alt="Corporates">
-                <div>
-                    <h5>— Turnkey Project Delivery</h5>
-                    <p>Our structured 7-step execution model ensures zero delays, predictable outcomes, and full
-                        operational readiness.</p>
-                    <h5>— Data-Driven Greenhouse Operations</h5>
-                    <p>Integrate IoT-enabled systems with dashboards for real-time control, monitoring, and predictive
-                        analytics.</p>
-                    <h5>— Subsidy & Compliance Management</h5>
-                    <p>We streamline subsidy acquisition and ensure compliance with documentation standards.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="grow">
-        <div class="grow-container">
-            <div class="grow-content">
-                <h1>Grow something great together.</h1>
-                <p>Whether you're a farmer, distributor, or partner, we’re here to support your goals with sustainable
-                    solutions and global expertise.</p>
-                <button>Let's Grow Together</button>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-container">
-            <div class="footer-logo">
-                <img src="./asset/images/logo_favicon.jpg" alt="Keisha Greens Logo">
-                <div class="footer-address">
-                    <strong>Head Office Address:</strong>
-                    815, Swati Clover, Sardar Patel Ring Road, Near Shilaj Circle, Thaltej, Ahmedabad, Gujarat 380059
-                </div>
-                <div class="footer-address">
-                    <strong>Factory Address:</strong>
-                    Plot-11, Yashraj Industrial Plotting, Opposite Mayur Woven Gate, Khatrej Kalol Road, Moti bhoyan,
-                    Gandhinagar, Gujarat - 382721
-                </div>
-                <div class="footer-address">
-                    <strong>Contact:</strong>
-                    +91 98984 01004 <br>
-                    +91 84908 01004 <br>
-                    info@keishagreens.in
-                </div>
-                <div class="footer-social">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-links">
-                <h4>Sitemap</h4>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Product & Systems</a></li>
-                    <li><a href="#">Greenhouse Structures</a></li>
-                    <li><a href="#">Soilless & Cocopeat Solutions</a></li>
-                    <li><a href="#">Hydroponic Solutions</a></li>
-                    <li><a href="#">IoT Solution & Automation</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-links">
-                <h4>Links</h4>
-                <ul>
-                    <li><a href="#">By Projects</a></li>
-                    <li><a href="#">By Services</a></li>
-                    <li><a href="#">By Crops</a></li>
-                    <li><a href="#">Downloads</a></li>
-                    <li><a href="#">Blogs</a></li>
-                    <li><a href="#">FAQ's</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            © 2025 Keisha Greens. All rights reserved. Designed & Developed by
-            <a href="#">Kraftier Studio</a> |
-            <a href="#">Privacy Policy</a> |
-            <a href="#">Terms of Service</a> |
-            <a href="#">Cookies Settings</a>
-        </div>
-    </footer>
-
-
-    <!-- Add your main content sections here -->
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Zoom-out & fade based on how far the card has scrolled within the viewport.
-        (function () {
-            const cards = document.querySelectorAll('.project-card');
-
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('in-view');
-                    } else {
-                        // remove class when card goes out of view
-                        entry.target.classList.remove('in-view');
-                    }
-                });
-            }, {
-                threshold: 0.15,  // 15% visibility
-            });
-
-            cards.forEach(card => io.observe(card));
-        })();
-    </script>
-    <!-- OPTIONAL JS (reveal on scroll + count-up when visible). Place before </body> -->
-    <script>
-        (function () {
-            const items = document.querySelectorAll('#numbers .reveal');
-            const counter1s = document.querySelectorAll('#numbers .counter1');
-
-            // reveal on each enter (up & down)
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    const el = entry.target;
-                    if (entry.isIntersecting) {
-                        el.classList.add('in-view');
-                    } else {
-                        el.classList.remove('in-view');
-                    }
-                });
-            }, { threshold: .15 });
-            items.forEach(i => io.observe(i));
-
-            // count-up once every time it enters view (resets when leaves)
-            const speed = 800; // ms for the animation
-            const co = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    const el = entry.target;
-                    const target = +el.dataset.target;
-                    if (entry.isIntersecting) {
-                        const startTime = performance.now();
-                        const start = 0;
-                        const step = (now) => {
-                            const p = Math.min(1, (now - startTime) / speed);
-                            el.textContent = Math.floor(start + p * (target - start));
-                            if (p < 1) requestAnimationFrame(step);
-                        };
-                        requestAnimationFrame(step);
-                    } else {
-                        // reset text when out of view so it animates again when re-entering
-                        el.textContent = '0';
-                    }
-                });
-            }, { threshold: .6 });
-            counter1s.forEach(c => {
-                // start from 0 so you see the count
-                c.textContent = '0';
-                co.observe(c);
-            });
-        })();
-    </script>
-    <script>
-        (function () {
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            const panels = document.querySelectorAll('.tab-content');
-
-            function activateTab(targetId, clickedBtn) {
-                // update buttons
-                tabButtons.forEach(btn => btn.classList.toggle('active', btn === clickedBtn));
-
-                // switch panels
-                panels.forEach(panel => {
-                    if (panel.id === targetId) {
-                        panel.classList.add('active');
-                        panel.style.display = 'flex'; // show active
-                    } else {
-                        panel.classList.remove('active');
-                        panel.style.display = 'none'; // instantly hide inactive
-                    }
-                });
-            }
-
-            // init: only show the active one
-            panels.forEach(panel => {
-                if (!panel.classList.contains('active')) {
-                    panel.style.display = 'none';
-                } else {
-                    panel.style.display = 'flex';
-                }
-            });
-
-            // button click
-            tabButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const id = btn.dataset.tab;
-                    activateTab(id, btn);
-                });
-            });
-        })();
-    </script>
-
-
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
-
-    <script>
-        AOS.init({
-            duration: 800,
-            easing: "ease-in-out",
-            once: true,
-            offset: 100,
-            delay: 0,
-        });
-    </script>
-
-    <script src="./script.js"></script>
-</body>
-
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Agri Green Polyhouse</title>
+		<link
+			rel="icon"
+			href="./asset/images/logo_favicon.jpg"
+			type="image/x-icon"
+		/>
+		<link rel="stylesheet" href="./style/style.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		/>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+			crossorigin="anonymous"
+		/>
+		<link
+			href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+			rel="stylesheet"
+		/>
+
+		<style>
+			.overlay-text {
+				position: absolute;
+				top: 30%;
+				/* distance from the top */
+				left: 50%;
+				transform: translateX(-50%);
+				color: white;
+				text-align: center;
+			}
+
+			body {
+				background: #f8f9fa;
+			}
+
+			/* Initial state */
+			.project-card {
+				will-change: opacity, transform;
+				opacity: 0.3651;
+				transform: translate3d(0px, 0px, 0px)
+					scale3d(0.93651, 0.93651, 1) rotateX(0deg) rotateY(0deg)
+					rotateZ(0deg) skew(0deg, 0deg);
+				transform-style: preserve-3d;
+
+				transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1),
+					opacity 0.9s ease;
+			}
+
+			/* Active state (when in view) */
+			.project-card.in-view {
+				opacity: 1;
+				transform: translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0)
+					rotateY(0) rotateZ(0) skew(0, 0);
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				.project-card {
+					transition: none;
+				}
+			}
+
+			/* ===== Numbers section styling ===== */
+			#numbers {
+				background: #0d4f2f;
+				/* deep green like your screenshot */
+				border-radius: 0;
+				/* make it edge-to-edge if your layout allows */
+			}
+
+			/* spacing helpers */
+			.py-6 {
+				padding-top: 4rem;
+				padding-bottom: 4rem;
+			}
+
+			.py-md-7 {
+				padding-top: 6rem;
+				padding-bottom: 6rem;
+			}
+
+			#numbers .stat {
+				position: relative;
+			}
+
+			/* button look */
+			.btn-soft-light {
+				background: rgba(255, 255, 255, 0.12);
+				color: #fff;
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				backdrop-filter: blur(2px);
+				box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+			}
+
+			.btn-soft-light:hover {
+				background: rgba(255, 255, 255, 0.2);
+				color: #fff;
+				border-color: rgba(255, 255, 255, 0.35);
+			}
+
+			/* optional: reveal-on-scroll + count-up animation */
+			.reveal {
+				will-change: opacity, transform;
+				opacity: 0.001;
+				transform: translate3d(0, 16px, 0) scale3d(0.985, 0.985, 1);
+				transform-style: preserve-3d;
+				transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+					opacity 0.7s ease;
+			}
+
+			.reveal.in-view {
+				opacity: 1;
+				transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+			}
+
+			.counter1 {
+				font-size: 3.5rem;
+				font-weight: bold;
+				color: white;
+				margin-bottom: 8px;
+				transition: color 0.3s;
+			}
+
+			/* Tabs */
+			.tabs {
+				text-align: center;
+				margin: 40px 0;
+			}
+
+			.tab-btn {
+				background: none;
+				border: none;
+				font-size: 2rem;
+				padding: 0.25rem 1rem;
+				cursor: pointer;
+				color: #111;
+				font-weight: 600;
+				position: relative;
+				outline: none;
+				transition: color 0.3s ease;
+			}
+
+			.tab-btn:hover {
+				color: #0a5c36;
+			}
+
+			.tab-btn.active {
+				color: #0a5c36;
+			}
+
+			.tab-btn.active::after {
+				content: "";
+				position: absolute;
+				left: 6%;
+				right: 6%;
+				bottom: -8px;
+				height: 3px;
+				background: #0a5c36;
+				border-radius: 2px;
+			}
+
+			/* Content container */
+			.tab-content {
+				display: none;
+				opacity: 0;
+				transform: translateY(18px);
+				transition: opacity 0.45s ease,
+					transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+				gap: 40px;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.tab-content img {
+				width: 100%;
+				max-width: 500px;
+				border-radius: 10px;
+				box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+			}
+
+			.tab-content.active {
+				display: flex;
+				opacity: 1;
+				transform: translateY(0);
+			}
+
+			/* Text section inside content */
+			.tab-content div {
+				max-width: 600px;
+			}
+
+			.tab-content h5 {
+				font-weight: 600;
+				margin-bottom: 12px;
+				color: #111;
+			}
+
+			.tab-content p {
+				margin-bottom: 20px;
+				line-height: 1.6;
+				color: #444;
+			}
+		</style>
+	</head>
+
+	<body>
+		<nav class="navbar">
+			<div
+				class="logo"
+				style="
+					display: flex;
+					align-items: center;
+					gap: 10px;
+					padding-left: 20px;
+				"
+			>
+				<img
+					src="asset/images/logo_favicon.jpg"
+					alt="Logo"
+					style="
+						width: 60px;
+						height: 60px;
+						border-radius: 50%;
+						object-fit: cover;
+						border: 2px solid #4caf50;
+						cursor: pointer;
+					"
+				/>
+				<span
+					style="
+						font-family: 'Poppins', sans-serif;
+						font-size: 20px;
+						font-weight: 600;
+						color: #277a2b;
+						letter-spacing: 1px;
+						cursor: pointer;
+					"
+				>
+					Agri Green Polyhouse
+				</span>
+			</div>
+			<!-- Hamburger Menu -->
+			<div class="menu-toggle" id="menu-toggle">
+				<i class="bi bi-list"></i>
+			</div>
+
+			<ul class="nav-links" id="nav-links" style="padding-right: 20px">
+				<li><a href="./index.html">Home</a></li>
+				<li><a href="./projects.html">Projects</a></li>
+				<li><a href="./about.html">About</a></li>
+				<li><a href="./contact.html">Contact</a></li>
+			</ul>
+		</nav>
+
+		<!-- header section -->
+		<div
+			class="container-fluid px-0"
+			style="position: relative; text-align: center; font-size: xx-large"
+		>
+			<figure>
+				<img
+					src="./asset/images/ground2.jpg"
+					alt="gallery"
+					class="img-fluid"
+					style="width: 100%; height: 500px"
+				/>
+				<div class="overlay-text">
+					<h1>Projects</h1>
+					<p class="lead text-white">
+						Every seed we plant is a step toward a greener tomorrow.
+						Our greenhouse projects are designed to nurture
+						sustainability, harness innovation, and grow a healthier
+						planet for future generations.
+					</p>
+				</div>
+			</figure>
+		</div>
+
+		<!-- section types -->
+		<section class="types" id="types">
+			<div class="container">
+				<div class="row">
+					<div
+						class="card mb-5 bg-light shadow project-card"
+						style="border-radius: 30px"
+					>
+						<div class="row g-5 p-4">
+							<div class="col-md-4">
+								<img
+									src="./asset/images/Panipat.png"
+									class="img-fluid rounded-start"
+									alt="Panipat"
+									style="height: 100% !important"
+								/>
+							</div>
+							<div class="col-md-8">
+								<div class="card-body">
+									<h1 class="card-title">
+										Project in Panipat
+									</h1>
+									<div class="row mt-5">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Location :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Panipat, Haryana
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Structure :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Fan & Pad Polyhouse
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Growing Medium :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Soilless Hydroponic + Coco peat
+												NFT
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">Crops :</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Cucumber, Capsicum, Cherry
+												Tomato, Gherkins
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">Area :</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												21000 Sq. M. Fan & Pad Polyhouse
+												20000 Sq. M. Naturally
+												Ventilated Polyhouse
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Automation :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Fully automated and climate
+												controlled
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Subsidy :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												80% Bank Loan Availed
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div
+						class="card my-5 bg-light shadow project-card"
+						style="border-radius: 30px"
+					>
+						<div class="row g-5 p-4">
+							<div class="col-md-4">
+								<img
+									src="./asset/images/Panipat.png"
+									class="img-fluid rounded-start"
+									alt="Panipat"
+									style="height: 100% !important"
+								/>
+							</div>
+							<div class="col-md-8">
+								<div class="card-body">
+									<h1 class="card-title">
+										Project in Bhilwara
+									</h1>
+									<div class="row mt-5">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Location :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Bhilwara, Rajasthan
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Structure :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Polyhouse + Net House
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Growing Medium :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Soil & Soilless
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">Crops :</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Capsicum & Cucumber
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">Area :</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												20,000 Sq. M.
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Automation :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">NA</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Subsidy :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">NA</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div
+						class="card my-5 bg-light shadow project-card"
+						style="border-radius: 30px"
+					>
+						<div class="row g-5 p-4">
+							<div class="col-md-4">
+								<img
+									src="./asset/images/Panipat.png"
+									class="img-fluid rounded-start"
+									alt="Panipat"
+									style="height: 100% !important"
+								/>
+							</div>
+							<div class="col-md-8">
+								<div class="card-body">
+									<h1 class="card-title">Project in Kadi</h1>
+									<div class="row mt-5">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Location :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Kadi, Gujarat
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Structure :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Polyhouse
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Growing Medium :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">Soil</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">Crops :</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Cucumbers
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">Area :</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												96,000 Sq. M.
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Automation :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Fully managed environment with
+												precision irrigation and climate
+												care️
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Subsidy :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												50% subsidy from NHB
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div
+						class="card my-5 bg-light shadow project-card"
+						style="border-radius: 30px"
+					>
+						<div class="row g-5 p-4">
+							<div class="col-md-4">
+								<img
+									src="./asset/images/Panipat.png"
+									class="img-fluid rounded-start"
+									alt="Panipat"
+									style="height: 100% !important"
+								/>
+							</div>
+							<div class="col-md-8">
+								<div class="card-body">
+									<h1 class="card-title">
+										Project in Jaipur
+									</h1>
+									<div class="row mt-5">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Location :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Jaipur, Rajasthan
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Structure :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Naturally Ventilated Polyhouse
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Growing Medium :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">Soil</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">Crops :</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">Cucumber</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">Area :</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												4000 Sq. M
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Automation :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">NA</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Subsidy :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												50% Subsidy under NHB
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div
+						class="card my-5 bg-light shadow project-card"
+						style="border-radius: 30px"
+					>
+						<div class="row g-5 p-4">
+							<div class="col-md-4">
+								<img
+									src="./asset/images/Panipat.png"
+									class="img-fluid rounded-start"
+									alt="Panipat"
+									style="height: 100% !important"
+								/>
+							</div>
+							<div class="col-md-8">
+								<div class="card-body">
+									<h1 class="card-title">Project in Kutch</h1>
+									<div class="row mt-5">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Location :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Kutch, Gujarat
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Structure :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Fan & Pad + Net house
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Growing Medium :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Hydroponics – DWC (Deep Water
+												Culture) + Grow Slabs
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">Crops :</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Exotic Vegetables like -
+												Cucumbers, Bell Peppers, Cherry
+												Tomatoes & Leafy Greens
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">Area :</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												21000 Sq. M.
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Automation :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">NA</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Subsidy :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">NA</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div
+						class="card my-5 bg-light shadow project-card"
+						style="border-radius: 30px"
+					>
+						<div class="row g-5 p-4">
+							<div class="col-md-4">
+								<img
+									src="./asset/images/Panipat.png"
+									class="img-fluid rounded-start"
+									alt="Panipat"
+									style="height: 100% !important"
+								/>
+							</div>
+							<div class="col-md-8">
+								<div class="card-body">
+									<h1 class="card-title">
+										Project in Abu Road
+									</h1>
+									<div class="row mt-5">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Location :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Maval, Abu Road
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Structure :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Polyhouse
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Growing Medium :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">Soil</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">Crops :</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">Cucumber</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">Area :</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												24,000 Sq. M.
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Automation :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">NA</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+									<div class="row p-0">
+										<div class="col-md-6">
+											<h6 class="card-title">
+												Subsidy :
+											</h6>
+										</div>
+										<div class="col-md-6">
+											<h6 class="card-title">
+												50% subsidy from NHB
+											</h6>
+										</div>
+									</div>
+									<hr
+										class="border border-dark"
+										style="opacity: 0.85"
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ===================== Numbers / Stats Section ===================== -->
+		<section id="numbers" class="py-6 py-md-7">
+			<div class="container">
+				<!-- Heading -->
+				<div class="row mb-5">
+					<div class="col-lg-9">
+						<p class="fw-semibold mb-2 text-white-50">
+							About Company
+						</p>
+						<h1 class="display-4 fw-semibold text-white mb-3">
+							Agri Green Polyhouse
+						</h1>
+						<p class="lead text-white-50 mb-0">
+							Explore advanced technologies in greenhouse farming
+							and hydroponics.
+						</p>
+					</div>
+				</div>
+
+				<!-- Stats -->
+				<div class="row g-0 align-items-stretch">
+					<!-- 1 -->
+					<div class="col-12 col-md-6 col-xl-3">
+						<div class="stat px-4 px-lg-5 py-5 reveal">
+							<div class="display-1 fw-bold lh-1 text-white mb-2">
+								<span class="counter1" data-target="700"
+									>700</span
+								>+
+							</div>
+							<div class="h5 text-white-50 mb-0">
+								Successful Projects
+							</div>
+						</div>
+					</div>
+
+					<!-- 2 -->
+					<div class="col-12 col-md-6 col-xl-3">
+						<div class="stat px-4 px-lg-5 py-5 reveal">
+							<div class="display-1 fw-bold lh-1 text-white mb-2">
+								<span class="counter1" data-target="15">15</span
+								>+
+							</div>
+							<div class="h5 text-white-50 mb-0">
+								Indian States Served
+							</div>
+						</div>
+					</div>
+
+					<!-- 3 -->
+					<div class="col-12 col-md-6 col-xl-3">
+						<div class="stat px-4 px-lg-5 py-5 reveal">
+							<div class="display-1 fw-bold lh-1 text-white mb-2">
+								<span class="counter1" data-target="7">7</span>+
+							</div>
+							<div class="h5 text-white-50 mb-0">
+								Countries Served
+							</div>
+						</div>
+					</div>
+
+					<!-- 4 -->
+					<div class="col-12 col-md-6 col-xl-3">
+						<div class="stat px-4 px-lg-5 py-5 reveal">
+							<div class="display-1 fw-bold lh-1 text-white mb-2">
+								<span class="counter1" data-target="45">45</span
+								>+
+							</div>
+							<div class="h5 text-white-50 mb-0">
+								Expert Agronomists
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- CTA -->
+				<div class="row mt-4">
+					<div class="col-auto">
+						<a
+							href="about.html"
+							class="btn btn-soft-light btn-lg px-4"
+							>About us</a
+						>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ================================================================== -->
+		<section class="types" id="types">
+			<div class="container my-5">
+				<h5 class="text-center fw-bold">Value Proposition</h5>
+				<h1 class="text-center">Why Trust Agri Green Polyhouse</h1>
+				<p class="text-center">
+					Explore advanced technologies in greenhouse farming and
+					hydroponics.
+				</p>
+
+				<!-- Tabs -->
+				<div class="tabs">
+					<button class="tab-btn active" data-tab="farmers">
+						Farmers
+					</button>
+					<button class="tab-btn" data-tab="corporates">
+						Corporates
+					</button>
+				</div>
+
+				<!-- Farmers Content -->
+				<div id="farmers" class="tab-content active">
+					<img src="asset/images/farmers.jfif" alt="Farmers" />
+					<div>
+						<h5>— Affordable Greenhouse Solutions</h5>
+						<p>
+							We design cost-effective greenhouse solutions
+							tailored to small and medium farmers.
+						</p>
+						<h5>— Training & Support</h5>
+						<p>
+							Hands-on training programs to empower farmers with
+							modern farming techniques.
+						</p>
+						<h5>— Increased Yield</h5>
+						<p>
+							Boost productivity and profits with controlled
+							environment farming.
+						</p>
+					</div>
+				</div>
+
+				<!-- Corporates Content -->
+				<div id="corporates" class="tab-content">
+					<img src="asset/images/corporate.jfif" alt="Corporates" />
+					<div>
+						<h5>— Turnkey Project Delivery</h5>
+						<p>
+							Our structured 7-step execution model ensures zero
+							delays, predictable outcomes, and full operational
+							readiness.
+						</p>
+						<h5>— Data-Driven Greenhouse Operations</h5>
+						<p>
+							Integrate IoT-enabled systems with dashboards for
+							real-time control, monitoring, and predictive
+							analytics.
+						</p>
+						<h5>— Subsidy & Compliance Management</h5>
+						<p>
+							We streamline subsidy acquisition and ensure
+							compliance with documentation standards.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="grow">
+			<div class="grow-container">
+				<div class="grow-content">
+					<h1>Grow something great together.</h1>
+					<p>
+						Whether you're a farmer, distributor, or partner, we’re
+						here to support your goals with sustainable solutions
+						and global expertise.
+					</p>
+					<button>Let's Grow Together</button>
+				</div>
+			</div>
+		</section>
+
+		<footer>
+			<div class="footer-container">
+				<div class="footer-logo">
+					<img
+						src="./asset/images/logo_favicon.jpg"
+						alt="Keisha Greens Logo"
+					/>
+					<div class="footer-address">
+						<strong>Head Office Address:</strong>
+						815, Swati Clover, Sardar Patel Ring Road, Near Shilaj
+						Circle, Thaltej, Ahmedabad, Gujarat 380059
+					</div>
+					<div class="footer-address">
+						<strong>Factory Address:</strong>
+						Plot-11, Yashraj Industrial Plotting, Opposite Mayur
+						Woven Gate, Khatrej Kalol Road, Moti bhoyan,
+						Gandhinagar, Gujarat - 382721
+					</div>
+					<div class="footer-address">
+						<strong>Contact:</strong>
+						+91 98984 01004 <br />
+						+91 84908 01004 <br />
+						info@keishagreens.in
+					</div>
+					<div class="footer-social">
+						<a href="#"><i class="fab fa-facebook"></i></a>
+						<a href="#"><i class="fab fa-instagram"></i></a>
+						<a href="#"><i class="fab fa-linkedin"></i></a>
+						<a href="#"><i class="fab fa-youtube"></i></a>
+					</div>
+				</div>
+
+				<div class="footer-links">
+					<h4>Sitemap</h4>
+					<ul>
+						<li><a href="#">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="#">Product & Systems</a></li>
+						<li><a href="#">Greenhouse Structures</a></li>
+						<li><a href="#">Soilless & Cocopeat Solutions</a></li>
+						<li><a href="#">Hydroponic Solutions</a></li>
+						<li><a href="#">IoT Solution & Automation</a></li>
+					</ul>
+				</div>
+
+				<div class="footer-links">
+					<h4>Links</h4>
+					<ul>
+						<li><a href="#">By Projects</a></li>
+						<li><a href="#">By Services</a></li>
+						<li><a href="#">By Crops</a></li>
+						<li><a href="#">Downloads</a></li>
+						<li><a href="#">Blogs</a></li>
+						<li><a href="#">FAQ's</a></li>
+						<li><a href="#">Contact</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="footer-bottom">
+				© 2025 Keisha Greens. All rights reserved. Designed & Developed
+				by
+				<a href="#">Kraftier Studio</a> |
+				<a href="#">Privacy Policy</a> |
+				<a href="#">Terms of Service</a> |
+				<a href="#">Cookies Settings</a>
+			</div>
+		</footer>
+
+		<!-- Add your main content sections here -->
+
+		<!-- Scripts -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+			crossorigin="anonymous"
+		></script>
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		<script>
+			// Zoom-out & fade based on how far the card has scrolled within the viewport.
+			(function () {
+				const cards = document.querySelectorAll(".project-card");
+
+				const io = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (entry.isIntersecting) {
+								entry.target.classList.add("in-view");
+							} else {
+								// remove class when card goes out of view
+								entry.target.classList.remove("in-view");
+							}
+						});
+					},
+					{
+						threshold: 0.15, // 15% visibility
+					}
+				);
+
+				cards.forEach((card) => io.observe(card));
+			})();
+		</script>
+		<!-- OPTIONAL JS (reveal on scroll + count-up when visible). Place before </body> -->
+		<script>
+			(function () {
+				const items = document.querySelectorAll("#numbers .reveal");
+				const counter1s =
+					document.querySelectorAll("#numbers .counter1");
+
+				// reveal on each enter (up & down)
+				const io = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							const el = entry.target;
+							if (entry.isIntersecting) {
+								el.classList.add("in-view");
+							} else {
+								el.classList.remove("in-view");
+							}
+						});
+					},
+					{ threshold: 0.15 }
+				);
+				items.forEach((i) => io.observe(i));
+
+				// count-up once every time it enters view (resets when leaves)
+				const speed = 800; // ms for the animation
+				const co = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							const el = entry.target;
+							const target = +el.dataset.target;
+							if (entry.isIntersecting) {
+								const startTime = performance.now();
+								const start = 0;
+								const step = (now) => {
+									const p = Math.min(
+										1,
+										(now - startTime) / speed
+									);
+									el.textContent = Math.floor(
+										start + p * (target - start)
+									);
+									if (p < 1) requestAnimationFrame(step);
+								};
+								requestAnimationFrame(step);
+							} else {
+								// reset text when out of view so it animates again when re-entering
+								el.textContent = "0";
+							}
+						});
+					},
+					{ threshold: 0.6 }
+				);
+				counter1s.forEach((c) => {
+					// start from 0 so you see the count
+					c.textContent = "0";
+					co.observe(c);
+				});
+			})();
+		</script>
+		<script>
+			(function () {
+				const tabButtons = document.querySelectorAll(".tab-btn");
+				const panels = document.querySelectorAll(".tab-content");
+
+				function activateTab(targetId, clickedBtn) {
+					// update buttons
+					tabButtons.forEach((btn) =>
+						btn.classList.toggle("active", btn === clickedBtn)
+					);
+
+					// switch panels
+					panels.forEach((panel) => {
+						if (panel.id === targetId) {
+							panel.classList.add("active");
+							panel.style.display = "flex"; // show active
+						} else {
+							panel.classList.remove("active");
+							panel.style.display = "none"; // instantly hide inactive
+						}
+					});
+				}
+
+				// init: only show the active one
+				panels.forEach((panel) => {
+					if (!panel.classList.contains("active")) {
+						panel.style.display = "none";
+					} else {
+						panel.style.display = "flex";
+					}
+				});
+
+				// button click
+				tabButtons.forEach((btn) => {
+					btn.addEventListener("click", () => {
+						const id = btn.dataset.tab;
+						activateTab(id, btn);
+					});
+				});
+			})();
+		</script>
+
+		<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+
+		<script>
+			AOS.init({
+				duration: 800,
+				easing: "ease-in-out",
+				once: true,
+				offset: 100,
+				delay: 0,
+			});
+		</script>
+
+		<script src="./script.js"></script>
+	</body>
 </html>
