@@ -38,51 +38,28 @@
 	</head>
 
 	<body>
-		<nav class="navbar">
-			<div
-				class="logo"
-				style="
-					display: flex;
-					align-items: center;
-					gap: 10px;
-					padding-left: 20px;
-				"
+		<nav>
+			<a
+				href="./index.html"
+				class="nav-logo"
+				data-aos="fade-right"
+				data-aos-duration="800"
 			>
 				<img
-					src="asset/images/logo_favicon.jpg"
-					alt="Logo"
-					style="
-						width: 60px;
-						height: 60px;
-						border-radius: 50%;
-						object-fit: cover;
-						border: 2px solid #4caf50;
-						cursor: pointer;
-					"
+					src="./asset/images/logo_favicon.jpg"
+					alt="Agri Green Polyhouse"
 				/>
-				<span
-					style="
-						font-family: 'Poppins', sans-serif;
-						font-size: 20px;
-						font-weight: 600;
-						color: #277a2b;
-						letter-spacing: 1px;
-						cursor: pointer;
-					"
-				>
-					Agri Green Polyhouse
-				</span>
-			</div>
-			<!-- Hamburger Menu -->
-			<div class="menu-toggle" id="menu-toggle">
-				<i class="bi bi-list"></i>
-			</div>
-
-			<ul class="nav-links" id="nav-links" style="padding-right: 20px">
+				Agri Green Polyhouse
+			</a>
+			<ul
+				class="nav-links"
+				data-aos="fade-left"
+				data-aos-duration="800"
+				data-aos-delay="200"
+			>
 				<li><a href="./index.html">Home</a></li>
 				<li><a href="./projects.html">Projects</a></li>
 				<li><a href="./about.html">About</a></li>
-
 				<li><a href="./contact.html">Contact</a></li>
 			</ul>
 		</nav>
@@ -171,10 +148,10 @@
 								/>
 							</div>
 							<div class="mb-3">
-								<label
+								<labelfooter
 									for="phone"
 									class="form-label text-success"
-									>Phone</label
+									>Phone</labelfooter
 								>
 								<input
 									type="phone"

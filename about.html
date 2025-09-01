@@ -2,398 +2,487 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Keisha Greens - About Us</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-    }
-    header {
-      position: relative;
-      background: url('hero.jpg') center/cover no-repeat;
-      height: 80vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: #fff;
-    }
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Keisha Greens - About Us</title>
+	<link rel="stylesheet" href="./style/style.css" />
 
-    header::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.4);
-    }
+	<!-- <style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+				background-color: #f9f9f9;
+			}
+			header {
+				position: relative;
+				background: url("hero.jpg") center/cover no-repeat;
+				height: 80vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+				color: #fff;
+			}
 
-    header .content {
-      position: relative;
-      z-index: 2;
-      /* max-width: 800px; */
-      /* background-image: url(./images/68765273f33a93ede7ca9c8e_1920x720\ \(2\)-p-1600.png); */
-      object-fit: cover;
-    }
+			header::after {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: rgba(0, 0, 0, 0.4);
+			}
 
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-    }
+			header .content {
+				position: relative;
+				z-index: 2;
+				/* max-width: 800px; */
+				/* background-image: url(./images/68765273f33a93ede7ca9c8e_1920x720\ \(2\)-p-1600.png); */
+				object-fit: cover;
+			}
 
-    header p {
-      font-size: 1.1rem;
-    }
+			header h1 {
+				font-size: 2.5rem;
+				margin-bottom: 0.5rem;
+			}
 
-    .content {
-      background: url('./images/68765273f33a93ede7ca9c8e_1920x720\ \(2\)-p-1600.png') center/cover no-repeat;
-      padding: 180px 20px;
-      color: white;
-      text-align: center;
-      position: relative;
-    }
+			header p {
+				font-size: 1.1rem;
+			}
 
-    .content::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.4);
-      /* Dark overlay for readability */
-      z-index: 0;
-    }
+			.content {
+				background: url("./images/68765273f33a93ede7ca9c8e_1920x720\ \(2\)-p-1600.png")
+					center/cover no-repeat;
+				padding: 180px 20px;
+				color: white;
+				text-align: center;
+				position: relative;
+			}
 
-    .content h1,
-    .content p {
-      position: relative;
-      z-index: 1;
-    }
+			.content::after {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: rgba(0, 0, 0, 0.4);
+				/* Dark overlay for readability */
+				z-index: 0;
+			}
 
-    section {
-      padding: 60px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
+			.content h1,
+			.content p {
+				position: relative;
+				z-index: 1;
+			}
 
-    .intro h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
+			section {
+				padding: 60px 20px;
+				max-width: 1100px;
+				margin: auto;
+			}
 
-    .intro p {
-      text-align: center;
-      max-width: 800px;
-      margin: auto;
-    }
+			.intro h2 {
+				text-align: center;
+				font-size: 2rem;
+				margin-bottom: 1rem;
+			}
 
-    .timeline {
-      position: relative;
-      margin: 50px auto;
-      padding: 0 20px;
-    }
+			.intro p {
+				text-align: center;
+				max-width: 800px;
+				margin: auto;
+			}
 
-    .timeline::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      width: 2px;
-      background: #ccc;
-      transform: translateX(-50%);
-    }
+			.timeline {
+				position: relative;
+				margin: 50px auto;
+				padding: 0 20px;
+			}
 
-    .timeline-item {
-      position: relative;
-      width: 50%;
-      padding: 20px;
-      box-sizing: border-box;
-    }
+			.timeline::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 50%;
+				width: 2px;
+				background: #ccc;
+				transform: translateX(-50%);
+			}
 
-    .timeline-item.left {
-      left: 0;
-      text-align: right;
-    }
+			.timeline-item {
+				position: relative;
+				width: 50%;
+				padding: 20px;
+				box-sizing: border-box;
+			}
 
-    .timeline-item.right {
-      left: 50%;
-    }
+			.timeline-item.left {
+				left: 0;
+				text-align: right;
+			}
 
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      top: 20px;
-      width: 15px;
-      height: 15px;
-      background: #28a745;
-      border-radius: 50%;
-      z-index: 1;
-    }
+			.timeline-item.right {
+				left: 50%;
+			}
 
-    .timeline-item.left::before {
-      right: -8px;
-    }
+			.timeline-item::before {
+				content: "";
+				position: absolute;
+				top: 20px;
+				width: 15px;
+				height: 15px;
+				background: #28a745;
+				border-radius: 50%;
+				z-index: 1;
+			}
 
-    .timeline-item.right::before {
-      left: -8px;
-    }
+			.timeline-item.left::before {
+				right: -8px;
+			}
 
-   .team {
-      text-align: center;
-      padding: 50px 20px;
-    }
- 
-    .team h2 {
-      font-size: 2rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-    }
-    .teamheading {
-      font-size: 2rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-    }
-    
-   .teamheading ::after {
-      content: '' !important;
-      position: absolute !important;
-      left: 0 !important;
-      bottom: -5px !important;
-      width: 0 !important;
-      height: 3px !important;
-      background-color: #4CAF50 !important;
-      transition: width 0.4s ease !important;
-    }
+			.timeline-item.right::before {
+				left: -8px;
+			}
 
-    .team p {
-      font-size: 1.1rem;
-      color: #555;
-    }
+			.team {
+				text-align: center;
+				padding: 50px 20px;
+			}
 
-    .team-members {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 30px;
-    }
+			.team h2 {
+				font-size: 2rem;
+				font-weight: bold;
+				margin-bottom: 0.5rem;
+			}
+			.teamheading {
+				font-size: 2rem;
+				font-weight: bold;
+				margin-bottom: 0.5rem;
+			}
 
-    .team-member {
-      max-width: 350px;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-    }
+			.teamheading ::after {
+				content: "" !important;
+				position: absolute !important;
+				left: 0 !important;
+				bottom: -5px !important;
+				width: 0 !important;
+				height: 3px !important;
+				background-color: #4caf50 !important;
+				transition: width 0.4s ease !important;
+			}
 
-    .team-member:hover {
-      transform: translateY(-5px);
-    }
+			.team p {
+				font-size: 1.1rem;
+				color: #555;
+			}
 
-    .team-member img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
+			.team-members {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 40px;
+				margin-top: 30px;
+			}
 
-    .team-member h4 {
-      position: relative;
-      display: inline-block;
-      margin: 10px 0 5px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      cursor: pointer;
-    }
+			.team-member {
+				max-width: 350px;
+				background: white;
+				padding: 20px;
+				border-radius: 10px;
+				box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+				transition: transform 0.3s ease;
+			}
 
-    .team-member h4::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      bottom: -5px;
-      height: 3px;
-      width: 0;
-      background-color: #28a745; /* underline color */
-      transform: translateX(-50%);
-      transition: width 0.4s ease-in-out;
-    }
+			.team-member:hover {
+				transform: translateY(-5px);
+			}
 
-    .team-member h4:hover::after {
-      width: 100%;
-    }
+			.team-member img {
+				width: 100%;
+				height: 200px;
+				object-fit: cover;
+				border-radius: 8px;
+			}
 
-    .team-member p {
-      color: #777;
-    }
+			.team-member h4 {
+				position: relative;
+				display: inline-block;
+				margin: 10px 0 5px;
+				font-size: 1.2rem;
+				font-weight: bold;
+				cursor: pointer;
+			}
 
-    .awards {
-      text-align: center;
-       border: 0.1px solid black;
+			.team-member h4::after {
+				content: "";
+				position: absolute;
+				left: 50%;
+				bottom: -5px;
+				height: 3px;
+				width: 0;
+				background-color: #28a745; /* underline color */
+				transform: translateX(-50%);
+				transition: width 0.4s ease-in-out;
+			}
 
-    }
+			.team-member h4:hover::after {
+				width: 100%;
+			}
 
-    .awards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
+			.team-member p {
+				color: #777;
+			}
 
-    .awards-grid img {
-      width: 100%;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
+			.awards {
+				text-align: center;
+				border: 0.1px solid black;
+			}
 
-    footer {
-      background: #f5f5f5;
-      padding: 30px 20px;
-      font-size: 0.9rem;
-    }
+			.awards-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+				gap: 20px;
+				margin-top: 30px;
+			}
 
-    footer .footer-content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
+			.awards-grid img {
+				width: 100%;
+				border-radius: 4px;
+				border: 1px solid #ccc;
+			}
 
-    footer a {
-      color: #28a745;
-      text-decoration: none;
-    }
+			footer {
+				background: #f5f5f5;
+				padding: 30px 20px;
+				font-size: 0.9rem;
+			}
 
-    @media(max-width: 768px) {
-      .timeline-item {
-        width: 100%;
-        left: 0 !important;
-        text-align: left !important;
-      }
+			footer .footer-content {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+				gap: 20px;
+				max-width: 1100px;
+				margin: auto;
+			}
 
-      .timeline-item::before {
-        left: -8px;
-      }
-    }
-  </style>
+			footer a {
+				color: #28a745;
+				text-decoration: none;
+			}
+
+			@media (max-width: 768px) {
+				.timeline-item {
+					width: 100%;
+					left: 0 !important;
+					text-align: left !important;
+				}
+
+				.timeline-item::before {
+					left: -8px;
+				}
+			}
+		</style> -->
 </head>
 
 <body>
+	<nav>
+		<a href="./index.html" class="nav-logo" data-aos="fade-right" data-aos-duration="800">
+			<img src="./asset/images/logo_favicon.jpg" alt="Agri Green Polyhouse" />
+			Agri Green Polyhouse
+		</a>
+		<ul class="nav-links" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+			<li><a href="./index.html">Home</a></li>
+			<li><a href="./projects.html">Projects</a></li>
+			<li><a href="./about.html">About</a></li>
+			<li><a href="./contact.html">Contact</a></li>
+		</ul>
+	</nav>
 
-  <header>
-    <div class="content">
-      <h1>Our Journey in Agricultural Innovation</h1>
-      <p>Since 2010, Keisha Greens has been at the forefront of controlled environment agriculture, transforming how
-        crops are grown through sustainable and efficient technologies.</p>
-    </div>
-  </header>
+	<header id="about">
+		<div class="content">
+			<h1>Our Journey in Agricultural Innovation</h1>
+			<p>
+				Since 2010, Keisha Greens has been at the forefront of
+				controlled environment agriculture, transforming how crops
+				are grown through sustainable and efficient technologies.
+			</p>
+		</div>
+	</header>
 
-  <section class="intro">
-    <h2 style="font-size: 35px;">Pioneering Sustainable Agriculture Since 2010</h2>
-    <p style="font-size: 18px;">Keisha Greens was founded with a clear mission: to revolutionize conventional farming by introducing
-      modern,
-      sustainable, and resource-efficient agricultural technologies adapted for Indian conditions and beyond.</p>
+	<section class="intro">
+		<h2 style="font-size: 35px">
+			Pioneering Sustainable Agriculture Since 2010
+		</h2>
+		<p style="font-size: 18px">
+			Keisha Greens was founded with a clear mission: to revolutionize
+			conventional farming by introducing modern, sustainable, and
+			resource-efficient agricultural technologies adapted for Indian
+			conditions and beyond.
+		</p>
 
-    <p style="font-size: 18px; ">What began as a small initiative in Gujarat has now expanded into a global enterprise, helping farmers increase
-      their yields while significantly reducing water consumption and eliminating the need for harmful pesticides.</p>
+		<p style="font-size: 18px">
+			What began as a small initiative in Gujarat has now expanded
+			into a global enterprise, helping farmers increase their yields
+			while significantly reducing water consumption and eliminating
+			the need for harmful pesticides.
+		</p>
 
-    <p style="font-size: 18px; ">Today, we offer comprehensive solutions across the agricultural spectrum, from advanced greenhouse technologies
-      and hydroponics systems to IoT automation and marketing support – a true one-stop solution for next-generation
-      farming.</p>
+		<p style="font-size: 18px">
+			Today, we offer comprehensive solutions across the agricultural
+			spectrum, from advanced greenhouse technologies and hydroponics
+			systems to IoT automation and marketing support – a true
+			one-stop solution for next-generation farming.
+		</p>
+	</section>
 
+	<section class="timeline">
+		<div class="timeline-item left">
+			<h3>2011</h3>
+			<p>
+				Founded with a mission to revolutionize Indian agriculture
+			</p>
+		</div>
+		<div class="timeline-item right">
+			<h3>2012</h3>
+			<p>Launched first greenhouse solution project in Gujarat</p>
+		</div>
+		<div class="timeline-item left">
+			<h3>2015</h3>
+			<p>Expanded to hydroponics and smart farming technologies</p>
+		</div>
+		<div class="timeline-item right">
+			<h3>2017</h3>
+			<p>Reached milestone of 200+ successful projects</p>
+		</div>
+		<div class="timeline-item left">
+			<h3>2019</h3>
+			<p>
+				Began international project expansion into Middle East and
+				Southeast Asia
+			</p>
+		</div>
+		<div class="timeline-item right">
+			<h3>2021</h3>
+			<p>Introduced advanced IoT solutions for farm automation</p>
+		</div>
+		<div class="timeline-item left">
+			<h3>2023</h3>
+			<p>
+				Surpassed 700 projects milestone across 10+ states and 7
+				countries
+			</p>
+		</div>
+	</section>
 
-  </section>
+	<section class="team">
+		<h2 class="teamheading">Our Leadership Team</h2>
+		<p>
+			Passionate experts committed to revolutionizing agriculture
+			through innovation and sustainability
+		</p>
+		<div class="team-members">
+			<div class="team-member">
+				<img src="./images/689492211d3e925ca79cb611_Yogeshbhai 2 Large.jpeg" alt="Anur Patel" />
+				<h4>Anur Patel</h4>
+				<p>Co-Founder & Director</p>
+			</div>
+			<div class="team-member">
+				<img src="./images/6894920145e1fa4cf4179939_Arunbhai 5 Large.jpeg" alt="Yogesh Patel" />
+				<h4>Yogesh Patel</h4>
+				<p>Co-Founder & Director</p>
+			</div>
+		</div>
+	</section>
 
-  <section class="timeline">
-    <div class="timeline-item left">
-      <h3>2011</h3>
-      <p>Founded with a mission to revolutionize Indian agriculture</p>
-    </div>
-    <div class="timeline-item right">
-      <h3>2012</h3>
-      <p>Launched first greenhouse solution project in Gujarat</p>
-    </div>
-    <div class="timeline-item left">
-      <h3>2015</h3>
-      <p>Expanded to hydroponics and smart farming technologies</p>
-    </div>
-    <div class="timeline-item right">
-      <h3>2017</h3>
-      <p>Reached milestone of 200+ successful projects</p>
-    </div>
-    <div class="timeline-item left">
-      <h3>2019</h3>
-      <p>Began international project expansion into Middle East and Southeast Asia</p>
-    </div>
-    <div class="timeline-item right">
-      <h3>2021</h3>
-      <p>Introduced advanced IoT solutions for farm automation</p>
-    </div>
-    <div class="timeline-item left">
-      <h3>2023</h3>
-      <p>Surpassed 700 projects milestone across 10+ states and 7 countries</p>
-    </div>
-  </section>
+	<section class="awards">
+		<h2>Awards & Accolades</h2>
+		<div class="awards-grid">
+			<img src="./images/6896b3ab5271fb1d89706a82_6.png" alt="" />
+			<img src="./images/6896b3ab7d7a33d1b1fae43d_7.png" alt="" />
+			<img src="./images/6896b3ab81242d50b40c5bf8_5.png" alt="" />
+			<img src="./images/6896b3abfd2ed92741a616d6_2.png" alt="" />
+			<img src="./images/6896b3abfe1f5daba82e760b_8.png" alt="" />
+			<img src="./images/6896b3ac1277994598bc24e4_3.png" alt="" />
+			<img src="./images/6896b3acae90a0d7fc6c363b_11.png" alt="" />
+			<img src="./images/6896b3ac69d42868e54134d2_1.png" alt="" />
+			<img src="./images/6896b3ab81242d50b40c5bf8_5.png" alt="" />
+			<img src="./images/6896b3ab5271fb1d89706a82_6.png" alt="" />
+			<img src="./images/6896b3ab7d7a33d1b1fae43d_7.png" alt="" />
+			<img src="./images/6896b3abfd2ed92741a616d6_2.png" alt="" />
+		</div>
+	</section>
 
-  <section class="team">
-    <h2 class="teamheading">Our Leadership Team</h2>
-    <p>Passionate experts committed to revolutionizing agriculture through innovation and sustainability</p>
-    <div class="team-members">
-      <div class="team-member">
-        <img src="./images/689492211d3e925ca79cb611_Yogeshbhai 2 Large.jpeg" alt="Anur Patel" />
-        <h4>Anur Patel</h4>
-        <p>Co-Founder & Director</p>
-      </div>
-      <div class="team-member">
-        <img src="./images/6894920145e1fa4cf4179939_Arunbhai 5 Large.jpeg" alt="Yogesh Patel" />
-        <h4>Yogesh Patel</h4>
-        <p>Co-Founder & Director</p>
-      </div>
-    </div>
-  </section>
+	<footer>
+		<div class="footer-container">
+			<div class="footer-logo">
+				<img src="./asset/images/logo_favicon.jpg" alt="Keisha Greens Logo" />
+				<div class="footer-address">
+					<strong>Head Office Address:</strong>
+					815, Swati Clover, Sardar Patel Ring Road, Near Shilaj
+					Circle, Thaltej, Ahmedabad, Gujarat 380059
+				</div>
+				<div class="footer-address">
+					<strong>Factory Address:</strong>
+					Plot-11, Yashraj Industrial Plotting, Opposite Mayur
+					Woven Gate, Khatrej Kalol Road, Moti bhoyan,
+					Gandhinagar, Gujarat - 382721
+				</div>
+				<div class="footer-address">
+					<strong>Contact:</strong>
+					+91 98984 01004 <br />
+					+91 84908 01004 <br />
+					info@keishagreens.in
+				</div>
+				<div class="footer-social">
+					<a href="#"><i class="fab fa-facebook"></i></a>
+					<a href="#"><i class="fab fa-instagram"></i></a>
+					<a href="#"><i class="fab fa-linkedin"></i></a>
+					<a href="#"><i class="fab fa-youtube"></i></a>
+				</div>
+			</div>
 
-  <section class="awards">
-    <h2>Awards & Accolades</h2>
-    <div class="awards-grid">
-      <img src="./images/6896b3ab5271fb1d89706a82_6.png" alt="">
-      <img src="./images/6896b3ab7d7a33d1b1fae43d_7.png" alt="">
-      <img src="./images/6896b3ab81242d50b40c5bf8_5.png" alt="">
-      <img src="./images/6896b3abfd2ed92741a616d6_2.png" alt="">
-      <img src="./images/6896b3abfe1f5daba82e760b_8.png" alt="">
-      <img src="./images/6896b3ac1277994598bc24e4_3.png" alt="">
-      <img src="./images/6896b3acae90a0d7fc6c363b_11.png" alt="">
-      <img src="./images/6896b3ac69d42868e54134d2_1.png" alt="">
-      <img src="./images/6896b3ab81242d50b40c5bf8_5.png" alt="">
-      <img src="./images/6896b3ab5271fb1d89706a82_6.png" alt="">
-      <img src="./images/6896b3ab7d7a33d1b1fae43d_7.png" alt="">
-      <img src="./images/6896b3abfd2ed92741a616d6_2.png" alt="">
-    </div>
-  </section>
+			<div class="footer-links">
+				<h4>Sitemap</h4>
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Product & Systems</a></li>
+					<li><a href="#">Greenhouse Structures</a></li>
+					<li><a href="#">Soilless & Cocopeat Solutions</a></li>
+					<li><a href="#">Hydroponic Solutions</a></li>
+					<li><a href="#">IoT Solution & Automation</a></li>
+				</ul>
+			</div>
 
-  <footer>
-    <div class="footer-content">
-      <div>
-        <p><strong>Head Office Address:</strong><br>9-15, Om Complex...</p>
-      </div>
-      <div>
-        <p><a href="#">Home</a> | <a href="#">About</a> | <a href="#">Products</a> | <a href="#">By Project</a></p>
-      </div>
-      <div>
-        <p>&copy; 2025 Keisha Greens. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+			<div class="footer-links">
+				<h4>Links</h4>
+				<ul>
+					<li><a href="#">By Projects</a></li>
+					<li><a href="#">By Services</a></li>
+					<li><a href="#">By Crops</a></li>
+					<li><a href="#">Downloads</a></li>
+					<li><a href="#">Blogs</a></li>
+					<li><a href="#">FAQ's</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+			</div>
+		</div>
 
+		<div class="footer-bottom">
+			© 2025 Keisha Greens. All rights reserved. Designed & Developed
+			by
+			<a href="#">Kraftier Studio</a> |
+			<a href="#">Privacy Policy</a> |
+			<a href="#">Terms of Service</a> |
+			<a href="#">Cookies Settings</a>
+		</div>
+	</footer>
 </body>
 
 </html>

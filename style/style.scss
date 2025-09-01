@@ -6,6 +6,7 @@
 @use "./section3" as *;
 @use "./grow" as *;
 @use "./foot" as *;
+@use "./about" as about;
 
 @import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
 
@@ -13,7 +14,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  // border: 1px solid black;
+  border: 1px solid black;
 }
 html {
   scroll-behavior: smooth;
@@ -24,7 +25,6 @@ body {
   background: #f4f9f6;
   color: #333;
   line-height: 1.7;
-//   padding-top: 15vh;
 }
 
 section {
