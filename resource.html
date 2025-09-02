@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Downloads - Agri Green Polyhouse</title>
+  <link rel="stylesheet" href="aboutstyle.css">
+  <link rel="stylesheet" href="download.css">
+  <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navbar */
+header {
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 50px;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+.btn {
+    background: #2d6a4f;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+/* Downloads */
+.downloads {
+    text-align: center;
+    padding: 70px 20px;
+}
+
+.downloads h1 {
+    font-size: 4rem;
+    font-weight: 400;
+    line-height: 1.2;
+    padding-bottom: 50px;
+    padding-top: 20px;
+}
+
+/* underline pseudo element */
+.downloads h1::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: #2d6a4f;
+    transition: width 0.5s ease-in-out;
+}
+
+/* active state (when in viewport) */
+.downloads h1.active::after {
+    width: 100%;
+}
+
+.download-list {
+    max-width: 80%;
+    margin: 0 auto;
+} 
+
+.download-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 27px 11px;
+    border-bottom: 1px solid #ccc;
+}
+
+.download-item-text{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.download-link {
+    color: #2d6a4f;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Banner */
+/* banner section */
+.banner {
+    position: relative;
+    background: url('https://cdn.prod.website-files.com/6857d47abda1c16e19f1bbf2/685f9724dab84fcb50f508cc_Untitled%20design%20(16)-p-1600.png') no-repeat center center/cover;
+    /* replace with your image */
+    min-height: 450px;
+    margin: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    /* same as in screenshot */
+    overflow: hidden;
+}
+
+/* dark overlay */
+.banner-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+    /* black overlay with 35% opacity */
+    z-index: 1;
+}
+
+/* text container */
+.banner-text {
+    position: relative;
+    z-index: 2;
+    /* keep text above overlay */
+    color: white;
+    text-align: center;
+    padding: 50px 150px;
+    max-width: 800px;
+}
+
+.banner-text h2 {
+    font-size: 42px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.banner-text p {
+    font-size: 18px;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.banner-text .btn {
+    background: #2d6a4f;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.banner-text .btn:hover {
+    background: #1b4332;
+}
+
+
+/* Footer */
+footer {
+    background: #eaf1e0;
+    padding: 40px 20px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-left {
+    max-width: 40%;
+}
+
+.footer-links {
+    display: flex;
+    gap: 50px;
+}
+
+.footer-links h4 {
+    margin-bottom: 10px;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #333;
+}
+
+.social-icons a {
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo" style="display: flex; align-items: center; gap: 10px; padding-left: 20px;">
+        <img src="images/logo_favicon.jpg" alt="Logo"
+          style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid #4CAF50; cursor: pointer;">
+        <span
+          style="font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 600; color: #277a2b; letter-spacing: 1px; cursor: pointer;">
+          Agri Green Polyhouse
+        </span>
+      </div>
+      <!-- Hamburger Menu -->
+      <div class="menu-toggle" id="menu-toggle">
+        <i class="bi bi-list"></i>
+      </div>
+
+      <ul class="nav-links" id="nav-links" style="padding-right: 20px;">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Why Us</a></li>
+        <li><a href="#">Types</a></li>
+        <li><a href="#">Financial</a></li>
+        <li><a href="#">Investment</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- Downloads Section -->
+  <section class="downloads">
+    <h1>Downloads</h1>
+    <div class="download-list">
+      <div class="download-item">
+        <span class="download-item-text">Company Brochure</span>
+        <a href="#" class="download-link">Download</a>
+      </div>
+      <div class="download-item">
+        <span class="download-item-text">Company Profile</span>
+        <a href="#" class="download-link">Download</a>
+      </div>
+      <div class="download-item">
+        <span class="download-item-text">Crop wise ROI Sheet</span>
+        <a href="#" class="download-link">Download</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Banner -->
+  <section class="banner">
+  <div class="banner-overlay">
+  <div class="banner-text">
+    <h2>Grow something great together.</h2>
+    <p>Whether you’re a farmer, distributor, or partner, we’re here to support your
+      goals with sustainable solutions and global expertise.</p>
+    <a href="#" class="btn">Let's Grow Together</a>
+  </div>
+  </div> <!-- overlay layer -->
+</section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-left">
+        <img src="images/logo_favicon.jpg" alt="Logo"
+          style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid #4CAF50; cursor: pointer;">
+        <p><strong>Head Office Address:</strong><br>
+          815, Swati Clover, Sardar Patel Ring Road, Near Shilaj Circle, Thaltej,<br>
+          Ahmedabad, Gujarat 380059</p>
+        <p><strong>Factory Address:</strong><br>
+          Plot-11, Yashraj Industrial Plotting, Opposite Mayur Woven Gate, Khatrej Kalol Road,<br>
+          Moti bhoyan, Gandhinagar, Gujarat - 382721</p>
+        <p><strong>Contact:</strong><br>
+          +91 89884 01004<br>
+          +91 84908 01004<br>
+          info@keishagreens.in</p>
+        <div class="social-icons">
+          <a href="#">FB</a>
+          <a href="#">IG</a>
+          <a href="#">YT</a>
+          <a href="#">LI</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h4>Sitemap</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Product & Systems</a></li>
+            <li><a href="#">Greenhouse Structures</a></li>
+            <li><a href="#">Soilless & Cocopeat Solutions</a></li>
+            <li><a href="#">Hydroponic Solutions</a></li>
+            <li><a href="#">IoT Solution & Automation</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Links</h4>
+          <ul>
+            <li><a href="#">By Projects</a></li>
+            <li><a href="#">By Services</a></li>
+            <li><a href="#">By Crops</a></li>
+            <li><a href="#">Downloads</a></li>
+            <li><a href="#">Blogs</a></li>
+            <li><a href="#">FAQ's</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Agri Green Polyhouse. All rights reserved. Designed & Developed by <a href="#">Kraftier Studio</a></p>
+      <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
