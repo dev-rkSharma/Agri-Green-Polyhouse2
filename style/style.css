@@ -181,10 +181,10 @@ header .head-content p {
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
-  font-size: 3.8rem;
+  font-size: 3.2rem;
   color: #6c757d;
   text-align: center !important;
-  font-weight: 900;
+  font-weight: 700;
 }
 .types .types-container {
   display: flex;
@@ -220,6 +220,7 @@ header .head-content p {
 .types p {
   margin-bottom: 20px;
   line-height: 1.8;
+  font-size: 1rem;
 }
 .types .crop-details {
   background: #f8f9fa;
@@ -407,7 +408,7 @@ footer .footer-bottom a:hover {
 
 header#about {
   position: relative;
-  background: url("hero.jpg") center/cover no-repeat;
+  background: url("../asset/images/6874abd17695e3a04c1a2da8_1920x720-p-1600.png") center/cover no-repeat;
   height: 80vh;
   display: flex;
   justify-content: center;
@@ -419,7 +420,6 @@ header#about::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
 }
 header#about .content {
   position: relative;
